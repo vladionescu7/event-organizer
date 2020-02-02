@@ -1,10 +1,19 @@
 package com.vlaur.project.eventsapp.model;
 
+import javax.persistence.*;
+
+@Entity(name = "Comment")
+@Table(name = "comments")
 public class Comment {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private Event event;
+
     private User user;
+
     private String content;
 
     public Comment() {

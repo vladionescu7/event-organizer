@@ -1,9 +1,16 @@
 package com.vlaur.project.eventsapp.model;
 
-public class Participation {
+import javax.persistence.*;
 
+@Entity(name = "Particpation")
+@Table(name = "participations")
+public class Participation {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private Event event;
+
     private User user;
 
 
