@@ -1,16 +1,30 @@
 package com.vlaur.project.eventsapp.model;
 
-import sun.security.util.Password;
-
+import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
+@Entity(name = "User")
+@Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column
+    @NotEmpty
     private String firstName;
+    @Column
+    @NotEmpty
     private String lastName;
+    @Column
+    @NotNull
     private String username;
+    @Column()
+    @NotNull
     private String password;
+    @Column
     private LocalDate dateOfBirth;
 
     public User() {
