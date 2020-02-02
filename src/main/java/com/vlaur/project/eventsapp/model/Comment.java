@@ -1,19 +1,20 @@
 package com.vlaur.project.eventsapp.model;
 
-public class Participation {
+public class Comment {
 
     private Long id;
     private Event event;
     private User user;
+    private String content;
 
-
-    public Participation() {
+    public Comment() {
     }
 
-    public Participation(Long id, Event event, User user) {
+    public Comment(Long id, Event event, User user, String content) {
         this.id = id;
         this.event = event;
         this.user = user;
+        this.content = content;
     }
 
     public Long getId() {
@@ -40,21 +41,26 @@ public class Participation {
         this.user = user;
     }
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Participation that = (Participation) o;
+        Comment comment = (Comment) o;
 
-        if (id != null ? !id.equals(that.id) : that.id != null) return false;
-        return event != null ? event.equals(that.event) : that.event == null;
+        return id != null ? id.equals(comment.id) : comment.id == null;
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (event != null ? event.hashCode() : 0);
-        return result;
+        return id != null ? id.hashCode() : 0;
     }
 }
