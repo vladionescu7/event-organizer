@@ -12,6 +12,11 @@ public class Participation {
     private Event event;
 
     private User user;
+    @Enumerated(EnumType.STRING)
+    private Approval participantApproval;
+
+    @Enumerated(EnumType.STRING)
+    private Approval organizerApproval;
 
 
     public Participation() {
@@ -45,6 +50,22 @@ public class Participation {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Approval getParticipantApproval() {
+        return participantApproval;
+    }
+
+    public void setParticipantApproval(Approval participantApproval) {
+        this.participantApproval = participantApproval;
+    }
+
+    public Approval getOrganizerApproval() {
+        return organizerApproval;
+    }
+
+    public void setOrganizerApproval(Approval organizerApproval) {
+        this.organizerApproval = organizerApproval;
     }
 
     @Override
