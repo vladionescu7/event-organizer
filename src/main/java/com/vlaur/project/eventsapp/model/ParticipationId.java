@@ -2,9 +2,10 @@ package com.vlaur.project.eventsapp.model;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import java.io.Serializable;
 
 @Embeddable
-public class ParticipationId {
+public class ParticipationId implements Serializable {
 
     @Column(name = "user_id")
     private Long userId;

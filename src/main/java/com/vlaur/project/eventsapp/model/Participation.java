@@ -10,11 +10,11 @@ public class Participation {
     private ParticipationId id;
 
     @ManyToOne
-    @JoinColumn(name = "event_id")
+    @JoinColumn(name = "event_id", insertable = false, updatable = false)
     private Event event;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
     @Enumerated(EnumType.STRING)
     private Approval participantApproval;

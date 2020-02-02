@@ -19,7 +19,9 @@ public class Event {
     @Column
     @Enumerated(EnumType.STRING)
     private Access access;
-    @Column
+
+    @ManyToOne
+    @JoinColumn(name = "organizer_id")
     private User organizer;
 
 
