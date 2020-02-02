@@ -5,12 +5,16 @@ import javax.persistence.*;
 @Entity(name = "Particpation")
 @Table(name = "participations")
 public class Participation {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
 
+    @EmbeddedId
+    private ParticipationId id;
+
+    @ManyToOne
+    @JoinColumn(name = "event_id")
     private Event event;
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
     @Enumerated(EnumType.STRING)
     private Approval participantApproval;
@@ -22,17 +26,12 @@ public class Participation {
     public Participation() {
     }
 
-    public Participation(Long id, Event event, User user) {
-        this.id = id;
-        this.event = event;
-        this.user = user;
-    }
 
-    public Long getId() {
+    public ParticipationId getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(ParticipationId id) {
         this.id = id;
     }
 

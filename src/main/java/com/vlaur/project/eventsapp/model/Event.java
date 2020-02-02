@@ -17,9 +17,11 @@ public class Event {
     @Column
     private String address;
     @Column
+    @Enumerated(EnumType.STRING)
     private Access access;
     @Column
     private User organizer;
+
 
     public Event() {
     }
