@@ -1,14 +1,24 @@
 package com.vlaur.project.eventsapp.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity(name = "Event")
+@Table(name = "events")
 public class Event {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column
     private LocalDate date;
+    @Column
     private String name;
+    @Column
     private String address;
+    @Column
     private Access access;
+    @Column
     private User organizer;
 
     public Event() {
