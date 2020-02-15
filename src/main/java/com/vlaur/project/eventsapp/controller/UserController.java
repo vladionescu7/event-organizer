@@ -44,5 +44,13 @@ public class UserController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
+    public ResponseEntity<String> delete(@PathVariable(name = "id") Long id) {
+        try {
+            userRepository.deleteById(id);
+        } catch (Exception e) {
+            return new ResponseEntity<>("failed to delete user with id " + id, HttpStatus.EXPECTATION_FAILED);
+        }
+        return new ResponseEntity<>("user deleted successfully", HttpStatus.OK);
+    }
 
 }
