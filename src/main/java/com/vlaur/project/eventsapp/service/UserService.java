@@ -21,9 +21,10 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public void save(User user) {
+    public User save(User user) {
         log.debug(user.getUsername() + "created");
-        userRepository.save(user);
+        return userRepository.save(user);
+
     }
 
     public List<User> findAll() {
@@ -40,7 +41,7 @@ public class UserService {
     }
 
     public User findByUsername(String username) {
-        User user = userRepository.findbyUsername(username)
+        User user = userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("user not found"));
         return user;
     }

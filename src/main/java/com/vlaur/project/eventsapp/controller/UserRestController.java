@@ -1,5 +1,9 @@
 package com.vlaur.project.eventsapp.controller;
 
+import com.vlaur.project.eventsapp.dto.user.UserMapper;
+import com.vlaur.project.eventsapp.dto.user.UserRequest;
+import com.vlaur.project.eventsapp.dto.user.UserResponse;
+import com.vlaur.project.eventsapp.model.User;
 import com.vlaur.project.eventsapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,30 +12,40 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequestMapping(UserRestController.API_USER)
 @RestController
 public class UserRestController {
-
+    public static final String API_USER = "/api/users";
     private UserService userService;
-
+    private UserMapper userMapper;
     @Autowired
     public UserRestController(UserService userService, UserMapper userMapper) {
         this.userService = userService;
+        this.userMapper = userMapper;
     }
+
 
     @PostMapping
     public ResponseEntity<UserResponse> create(@RequestBody UserRequest request) {
-        return new ResponseEntity<>(userService.save(request), HttpStatus.CREATED);
+        User user = userMapper.toEntity(request);
+        User savedUser = userService.save(user);
+        UserResponse userResponse = userMapper.toDto(savedUser);
+        return new ResponseEntity<>(userResponse, HttpStatus.CREATED);
+
     }
 
     @GetMapping
     public ResponseEntity<List<UserResponse>> findAll() {
-        return new ResponseEntity<>(userService.findAll(), HttpStatus.OK);
+        List<User> users = userService.findAll();
+        List<UserResponse> usersResponse = userMapper.toDto(users);
+        return new ResponseEntity<>(usersResponse, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> findById(@PathVariable(name = "id") Long id) {
-        UserResponse response = userService.findById(id);
-        return new ResponseEntity<>(response, HttpStatus.OK);
+        User response = userService.findById(id);
+        UserResponse userResponse = userMapper.toDto(response);
+        return new ResponseEntity<>(userResponse, HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

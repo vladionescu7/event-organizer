@@ -1,11 +1,13 @@
 package com.vlaur.project.eventsapp.dto.user;
 
 import com.vlaur.project.eventsapp.model.User;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Component
 public class UserMapper {
 
     public User toEntity(UserRequest userRequest) {
@@ -35,6 +37,7 @@ public class UserMapper {
         UserResponse dto = new UserResponse();
         dto.setFirstName(user.getFirstName());
         dto.setLastName(user.getLastName());
+        dto.setId(user.getId());
 
         return dto;
     }
