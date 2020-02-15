@@ -1,6 +1,5 @@
 package com.vlaur.project.eventsapp;
 
-
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.web.server.LocalServerPort;
@@ -16,6 +15,6 @@ public class RestIntegrationTest {
     private int port;
 
     protected String url(String relativePath) {
-        return "http://localhost:" + port + relativePath;
+        return "https://localhost:" + port + relativePath;
     }
 }
