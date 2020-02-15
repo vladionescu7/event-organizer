@@ -2,7 +2,6 @@ package com.vlaur.project.eventsapp.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity(name = "User")
@@ -10,7 +9,7 @@ import java.time.LocalDate;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column
     @NotEmpty
@@ -19,10 +18,10 @@ public class User {
     @NotEmpty
     private String lastName;
     @Column
-    @NotNull
+
     private String username;
-    @Column()
-    @NotNull
+    @Column
+
     private String password;
     @Column
     private LocalDate dateOfBirth;

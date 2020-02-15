@@ -15,6 +15,6 @@ public class RestIntegrationTest {
     private int port;
 
     protected String url(String relativePath) {
-        return "https://localhost:" + port + relativePath;
+        return "http://localhost:" + port + relativePath;
     }
 }
