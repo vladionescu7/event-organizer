@@ -12,10 +12,9 @@ import com.vlaur.project.eventsapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RequestMapping(EventRestController.API_EVENTS)
 @RestController
@@ -50,4 +49,26 @@ public class EventRestController {
 
         return new ResponseEntity<>(eventResponse, HttpStatus.CREATED);
     }
+
+    @GetMapping
+    public ResponseEntity<List<EventResponse>> findAll() {
+        List<Event> events = eventService.findAll();
+        List<EventResponse> eventResponses = eventMapper.toDto(events);
+        return new ResponseEntity<>(eventResponses, HttpStatus.OK);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<EventResponse> findById(@PathVariable(name = "id") Long id) {
+        Event result = eventService.findById(id);
+        EventResponse eventResponse = eventMapper.toDto(result);
+        return new ResponseEntity<>(eventResponse, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> delete(@PathVariable(name = "id") Long id) {
+        eventService.delete(id);
+        return new ResponseEntity<>("event deleted", HttpStatus.OK);
+    }
+
+
 }
