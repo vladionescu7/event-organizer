@@ -2,9 +2,12 @@ package com.vlaur.project.eventsapp.service;
 
 
 import com.vlaur.project.eventsapp.model.Event;
+import com.vlaur.project.eventsapp.model.User;
 import com.vlaur.project.eventsapp.repository.EventRepository;
+import com.vlaur.project.eventsapp.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,15 +18,23 @@ public class EventService {
 
     private static final Logger log = LoggerFactory.getLogger(EventService.class);
 
-    private EventRepository eventRepository;
+    private final EventRepository eventRepository;
+    private final UserRepository userRepository;
 
-    public EventService(EventRepository eventRepository) {
+    @Autowired
+    public EventService(EventRepository eventRepository, UserRepository userRepository) {
         this.eventRepository = eventRepository;
+        this.userRepository = userRepository;
     }
 
-    public void save(Event event) {
+    public Event save(Event event) {
         log.debug(event.getName() + "created");
-        eventRepository.save(event);
+        Long userId = event.getOrganizer().getId();
+        User user = userRepository
+                .findById(userId)
+                .orElseThrow(() -> new RuntimeException("User with id " + userId + " does not exist"));
+        event.setOrganizer(user);
+        return eventRepository.save(event);
     }
 
     public List<Event> findAll() {
