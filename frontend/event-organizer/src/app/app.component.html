@@ -1,5 +1,13 @@
+<mat-toolbar color="primary">
+  <span>Second Line</span>
+  <span class="example-spacer"></span>
+  <button *ngIf="!isAuthenticated" (click)="login()"> Login</button>
+  <button *ngIf="isAuthenticated" (click)="logout()"> Logout</button>
+</mat-toolbar>
+
 <div class="content" role="main">
   <router-outlet></router-outlet>
+</div>
 
 
 

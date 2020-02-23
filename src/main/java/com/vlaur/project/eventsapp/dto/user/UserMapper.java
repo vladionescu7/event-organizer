@@ -14,7 +14,7 @@ public class UserMapper {
         User user = new User();
         user.setFirstName(userRequest.getFirstName());
         user.setLastName(userRequest.getLastName());
-        user.setPassword(userRequest.getPassword());
+        // user.setPassword(userRequest.getPassword());
         user.setUsername(userRequest.getUsername());
         user.setDateOfBirth(userRequest.getDateOfBirth());
         return user;

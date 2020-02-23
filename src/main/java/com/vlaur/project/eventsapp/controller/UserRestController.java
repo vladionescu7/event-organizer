@@ -43,9 +43,10 @@ public class UserRestController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponse> findById(@PathVariable(name = "id") Long id) {
-        User response = userService.findById(id);
-        UserResponse userResponse = userMapper.toDto(response);
-        return new ResponseEntity<>(userResponse, HttpStatus.OK);
+        return userService.findById(id)
+                .map(userMapper::toDto)
+                .map(userResponse -> new ResponseEntity<>(userResponse, HttpStatus.OK))
+                .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
     @DeleteMapping("/{id}")

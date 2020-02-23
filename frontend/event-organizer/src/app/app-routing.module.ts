@@ -2,6 +2,7 @@ import { UserComponent } from './features/user/user.component';
 import { IntroComponent } from './intro/intro.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { OktaCallbackComponent } from '@okta/okta-angular';
 
 
 const routes: Routes = [
@@ -13,10 +14,16 @@ const routes: Routes = [
     path: 'user',
     component: UserComponent
   }
+,
+  {
+    path: 'implicit/callback',
+    component: OktaCallbackComponent
+  }
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
+  
 })
 export class AppRoutingModule { }

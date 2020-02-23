@@ -3,9 +3,11 @@ import { NgModule } from '@angular/core';
 import { MaterialModule } from '../shared/material/material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+
 @NgModule({
     declarations: [
-        UserComponent
+        UserComponent,
+        
     ],
     imports: [
         MaterialModule,

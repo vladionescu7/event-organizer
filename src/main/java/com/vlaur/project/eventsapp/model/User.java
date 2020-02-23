@@ -20,21 +20,21 @@ public class User {
     @Column
 
     private String username;
-    @Column
-
-    private String password;
+    //    @Column
+//
+//    private String password;
     @Column
     private LocalDate dateOfBirth;
 
     public User() {
     }
 
-    public User(Long id, String firstName, String lastName, String username, String password, LocalDate dateOfBirth) {
+    public User(Long id, String firstName, String lastName, String username, LocalDate dateOfBirth) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
-        this.password = password;
+        // this.password = password;
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -70,13 +70,13 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
+//    public String getPassword() {
+//        return password;
+//    }
+//
+//    public void setPassword(String password) {
+//        this.password = password;
+//    }
 
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
