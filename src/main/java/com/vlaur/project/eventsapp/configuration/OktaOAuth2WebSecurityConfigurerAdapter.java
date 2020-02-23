@@ -13,7 +13,7 @@ public class OktaOAuth2WebSecurityConfigurerAdapter extends WebSecurityConfigure
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors();
-        http.cors().disable();
+        http.csrf().disable();
         http.oauth2ResourceServer().jwt();
         http.authorizeRequests().anyRequest().authenticated();
     }
