@@ -12,10 +12,37 @@ export class AppComponent {
   isAuthenticated: boolean;
 
   constructor(public oktaAuth: OktaAuthService,
-    private userService: UserService) {
+              private userService: UserService) {
     // Subscribe to authentication state changes
     this.oktaAuth.$authenticationState.subscribe(
-      (isAuthenticated: boolean)  => this.isAuthenticated = isAuthenticated
+      (isAuthenticated: boolean) => {
+        this.isAuthenticated = isAuthenticated;
+        if (this.isAuthenticated) {
+          this.oktaAuth.getUser().then(userInfo => {
+            this.userService.getUserByOktaUserId(userInfo.sub)
+              .subscribe(
+                user => console.log(user),
+                errorResponse => {
+                  if (errorResponse.status === 404) {
+                    const user: IUser = new User(
+                      userInfo.sub,
+                      userInfo.firstName,
+                      userInfo.lastName
+                    );
+
+                    this.userService.saveUser(user)
+                      .subscribe(
+                        _ => console.log('saved user successfully'),
+                        _ => console.log('Failed to save user')
+                      );
+                  }
+                }
+              );
+          });
+
+
+        }
+      }
     );
   }
 
@@ -23,31 +50,6 @@ export class AppComponent {
     // Get the authentication state for immediate use
     this.isAuthenticated = await this.oktaAuth.isAuthenticated();
 
-    if (this.isAuthenticated) {
-      const userInfo = await this.oktaAuth.getUser();
-
-      this.userService.getUserByOktaUserId(userInfo.sub)
-      .subscribe(
-        user => console.log(user),
-        errorResponse => {
-          if (errorResponse.statusCode == 404) {
-            const user: IUser = new User(
-              userInfo.sub,
-              userInfo.firstName,
-              userInfo.lastName
-            );
-
-            this.userService.saveUser(user)
-            .subscribe(
-              _=> console.log('saved user successfully'),
-              _=>console.log('Failed to save user')
-            );
-          }
-        }
-      )
-      
-      
-    }
   }
 
   login() {

@@ -41,9 +41,9 @@ public class UserRestController {
         return new ResponseEntity<>(usersResponse, HttpStatus.OK);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<UserResponse> findById(@PathVariable(name = "id") Long id) {
-        return userService.findById(id)
+    @GetMapping("/{username}")
+    public ResponseEntity<UserResponse> findByUsername(@PathVariable(name = "username") String username) {
+        return userService.findByUsername(username)
                 .map(userMapper::toDto)
                 .map(userResponse -> new ResponseEntity<>(userResponse, HttpStatus.OK))
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
