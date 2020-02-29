@@ -25,6 +25,7 @@ export class AppComponent {
                 errorResponse => {
                   if (errorResponse.status === 404) {
                     const user: IUser = new User(
+                      null,
                       userInfo.sub,
                       userInfo.firstName,
                       userInfo.lastName

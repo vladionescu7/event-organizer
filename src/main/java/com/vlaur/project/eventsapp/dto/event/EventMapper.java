@@ -20,7 +20,7 @@ public class EventMapper {
     public UserMapper userMapper;
 
 
-    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public Event toEntity(EventRequest eventRequest) {
         Event event = new Event();

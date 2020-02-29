@@ -4,8 +4,9 @@ import { Access } from './access';
 export interface IEvent {
     name: string;
     address: string;
-    date: Date;
+    date: string;
     organiser: User;
+    organiserId: number;
     access: Access;
 }
 
@@ -13,9 +14,11 @@ export class Event implements IEvent {
     constructor(
         public name: string = '',
         public address: string = '',
-        public date: Date = null,
+        public date: string = '',
         public organiser: User = null,
+        public organiserId: number = 0,
         public access: Access = null
 
     ) {}
+
 }

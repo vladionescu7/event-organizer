@@ -17,6 +17,7 @@ import {
 import { AuthInterceptor } from './auth.interceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NavbarComponent } from './navbar/navbar.component';
+import { DatePipe } from '@angular/common';
 
 const config = {
   issuer: 'https://dev-790783.okta.com/oauth2/default',
@@ -41,7 +42,7 @@ const config = {
     MatToolbarModule,
     HttpClientModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, OktaAuthGuard],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}, OktaAuthGuard, DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

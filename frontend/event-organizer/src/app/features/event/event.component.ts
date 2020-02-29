@@ -19,6 +19,7 @@ export class EventComponent implements OnInit {
   accessOptions = [
     Access.PUBLIC, Access.PRIVATE
   ];
+  eventDate: Date;
 
   constructor(private eventService: EventService, private httpClient: HttpClient
   ) { }
@@ -29,11 +30,11 @@ export class EventComponent implements OnInit {
 
   saveEvent(event: IEvent) {
     console.log(event);
-    return this.httpClient.post<IEvent>(`${apiUrl}${EventComponent.EVENTS_API}`, event)
-      .subscribe(
-        data => {
-          this.event = data;
-        });
+    const dateString = this.eventService.toDateString(this.eventDate);
+    event.date = dateString;
+    console.log(this.eventDate)
+    return this.eventService.saveEvent(event)
+    .subscribe(result => console.log('Event saved!'));
 
   }
 

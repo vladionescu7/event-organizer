@@ -12,17 +12,13 @@
     <br/>
 
     <mat-form-field>
-      <input [(ngModel)]="event.date" [matDatepicker]="myDatepicker" matInput placeholder="Date">
+      <input [(ngModel)]="eventDate" [matDatepicker]="myDatepicker" matInput placeholder="Date">
       <mat-datepicker-toggle [for]="myDatepicker" matSuffix></mat-datepicker-toggle>
       <mat-datepicker #myDatepicker></mat-datepicker>
     </mat-form-field>
 
     <br/>
-    <mat-form-field>
-      <app-organiser [organiser]=event.organiser></app-organiser>
-      <input [(ngModel)]="event.organiser" matInput placeholder="Organiser - Your name here">
-    </mat-form-field>
-    <br/>
+
     <mat-form-field>
       <mat-label>Access</mat-label>
       <mat-select [(ngModel)]="event.access">
