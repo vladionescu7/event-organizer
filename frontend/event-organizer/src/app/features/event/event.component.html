@@ -1,0 +1,37 @@
+<mat-card id="card" style="text-align: center;">
+  <h2>Create an event</h2>
+
+  <mat-card-content>
+    <mat-form-field>
+      <input [(ngModel)]="event.name" matInput placeholder="Event Name">
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+      <textarea [(ngModel)]="event.address" matInput placeholder="Address"></textarea>
+    </mat-form-field>
+    <br/>
+
+    <mat-form-field>
+      <input [(ngModel)]="event.date" [matDatepicker]="myDatepicker" matInput placeholder="Date">
+      <mat-datepicker-toggle [for]="myDatepicker" matSuffix></mat-datepicker-toggle>
+      <mat-datepicker #myDatepicker></mat-datepicker>
+    </mat-form-field>
+
+    <br/>
+    <mat-form-field>
+      <app-organiser [organiser]=event.organiser></app-organiser>
+      <input [(ngModel)]="event.organiser" matInput placeholder="Organiser - Your name here">
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+      <mat-label>Access</mat-label>
+      <mat-select [(ngModel)]="event.access">
+        <mat-option *ngFor="let access of accessOptions" [value]="access">{{access}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br/>
+    <button (click)="saveEvent(event)" color="primary" mat-raised-button style="margin-right:5px;" type="submit">Create
+      Event
+    </button>
+
+  </mat-card-content>

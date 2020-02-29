@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -23,6 +24,9 @@ class EventRestControllerTest extends RestIntegrationTest {
 
     @Autowired
     private TestRestTemplate testRestTemplate;
+
+
+    DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     @Test
     void givenEvent_whenCreateEventIsCalled_thenEventIsCreated() {
@@ -35,7 +39,7 @@ class EventRestControllerTest extends RestIntegrationTest {
         EventRequest eventRequest = new EventRequest();
         eventRequest.setName("my event");
         eventRequest.setAddress("here");
-        eventRequest.setDate(LocalDate.now());
+        eventRequest.setDate(LocalDate.now().format(dateTimeFormatter));
         eventRequest.setAccess(Access.PUBLIC);
         eventRequest.setOrganiserId(savedUser.getId());
 

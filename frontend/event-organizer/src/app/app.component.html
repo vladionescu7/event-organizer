@@ -1,6 +1,9 @@
 <mat-toolbar color="primary">
-  <span>Second Line</span>
+  <span>Event Organizer</span>
   <span class="example-spacer"></span>
+  <div>
+    <app-navbar></app-navbar>
+  </div>
   <button *ngIf="!isAuthenticated" (click)="login()"> Login</button>
   <button *ngIf="isAuthenticated" (click)="logout()"> Logout</button>
 </mat-toolbar>
