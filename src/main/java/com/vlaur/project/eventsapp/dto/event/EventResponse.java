@@ -4,13 +4,11 @@ import com.vlaur.project.eventsapp.dto.user.UserResponse;
 import com.vlaur.project.eventsapp.model.Access;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-
 @Component
 public class EventResponse {
 
     private Long id;
-    private LocalDate date;
+    private String date;
     private String name;
     private String address;
     private Access access;
@@ -19,7 +17,7 @@ public class EventResponse {
     public EventResponse() {
     }
 
-    public EventResponse(Long id, LocalDate date, String name, String address, Access access, UserResponse organiser) {
+    public EventResponse(Long id, String date, String name, String address, Access access, UserResponse organiser) {
         this.id = id;
         this.date = date;
         this.name = name;
@@ -36,11 +34,11 @@ public class EventResponse {
         this.id = id;
     }
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

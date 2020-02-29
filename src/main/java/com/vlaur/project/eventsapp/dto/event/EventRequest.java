@@ -3,14 +3,12 @@ package com.vlaur.project.eventsapp.dto.event;
 import com.vlaur.project.eventsapp.model.Access;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDate;
-
 ;
 
 @Component
 public class EventRequest {
 
-    private LocalDate date;
+    private String date;
     private String name;
     private String address;
     private Access access;
@@ -19,7 +17,7 @@ public class EventRequest {
     public EventRequest() {
     }
 
-    public EventRequest(LocalDate date, String name, String address, Access access, Long organiserId) {
+    public EventRequest(String date, String name, String address, Access access, Long organiserId) {
         this.date = date;
         this.name = name;
         this.address = address;
@@ -28,11 +26,11 @@ public class EventRequest {
     }
 
 
-    public LocalDate getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(String date) {
         this.date = date;
     }
 

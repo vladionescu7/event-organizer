@@ -1,8 +1,9 @@
 import { UserComponent } from './features/user/user.component';
+import { EventComponent } from './features/event/event.component';
 import { IntroComponent } from './intro/intro.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { OktaCallbackComponent } from '@okta/okta-angular';
+import { OktaCallbackComponent, OktaAuthGuard } from '@okta/okta-angular';
 
 
 const routes: Routes = [
@@ -15,6 +16,11 @@ const routes: Routes = [
     component: UserComponent
   }
 ,
+  {
+    path: 'new-event',
+    component: EventComponent, 
+    canActivate: [OktaAuthGuard]
+  },
   {
     path: 'implicit/callback',
     component: OktaCallbackComponent
